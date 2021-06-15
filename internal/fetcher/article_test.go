@@ -16,8 +16,8 @@ func TestFetchArticle(t *testing.T) {
 		url string
 		err error
 	}{
-		{"https://www.rfa.com/realtime/world/story20210602-1151196", ErrTimeOverDays},
-		{"https://www.rfa.com/realtime/world/story20210607-1153241", nil},
+		{"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/cm-06102021141552.html", ErrTimeOverDays},
+		{"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/ql1-06142021063938.html", nil},
 	}
 	for _, tc := range tests {
 		a := NewArticle()
@@ -39,8 +39,8 @@ func TestFetchTitle(t *testing.T) {
 		url   string
 		title string
 	}{
-		{"https://www.rfa.com/realtime/world/story20210602-1151196", "马国男子腰缠巨蟒骑摩托车送往放生引热议"},
-		{"https://www.rfa.com/realtime/world/story20210607-1153241", "以色列将于14日前投票批准新政府"},
+		{"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/cm-06102021141552.html", "拜登撤销特朗普的禁令   TikTok、微信万事大吉了吗？"},
+		{"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/ql1-06142021063938.html", "七国峰会声明批评中国   中国政府低调回应"},
 	}
 	for _, tc := range tests {
 		a := NewArticle()
@@ -76,12 +76,12 @@ func TestFetchUpdateTime(t *testing.T) {
 		want string
 	}{
 		{
-			"https://www.rfa.com/realtime/world/story20210602-1151196",
-			"2021-06-02 15:44:33 +0800 UTC",
+			"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/cm-06102021141552.html",
+			"2021-06-11 04:42:00 +0800 UTC",
 		},
 		{
-			"https://www.rfa.com/realtime/world/story20210607-1153241",
-			"2021-06-07 21:38:53 +0800 UTC",
+			"https://www.rfa.org/mandarin/yataibaodao/junshiwaijiao/ql1-06142021063938.html",
+			"2021-06-14 18:39:00 +0800 UTC",
 		},
 	}
 	var err error

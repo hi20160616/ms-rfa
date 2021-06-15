@@ -3,6 +3,7 @@ package fetcher
 import (
 	"net/url"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -15,18 +16,20 @@ import (
 func fetchLinks() ([]string, error) {
 	rt := []string{}
 
-	for _, rawurl := range configs.Data.MS.URL {
+	year := strconv.Itoa(time.Now().Year())
+	urls := append(configs.Data.MS.URL,
+		"https://www.rfa.org/mandarin/Xinwen/story_archive?year="+year,
+		"https://www.rfa.org/mandarin/yataibaodao/story_archive?year="+year)
+
+	for _, rawurl := range urls {
 		links, err := getLinks(rawurl)
 		if err != nil {
 			return nil, err
 		}
 		rt = append(rt, links...)
 	}
-	newsWorld := linksFilter(rt, `.*?/news/world/.*`)
-	newsChina := linksFilter(rt, `.*?/news/china/.*`)
-	realtimeWorld := linksFilter(rt, `.*?/realtime/world/.*`)
-	realtimeChina := linksFilter(rt, `.*?/realtime/china/.*`)
-	rt = append(append(append(newsWorld, newsChina...), realtimeWorld...), realtimeChina...)
+	rt = linksFilter(rt, `.*?/.*?-\d*.html`)
+	rt = kickOutLinksMatchPath(rt, "about")
 	return rt, nil
 }
 
