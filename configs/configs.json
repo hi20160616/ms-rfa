@@ -1,0 +1,16 @@
+{
+  "dbpath":"db",
+  "microservice":{
+    "title":"rfa",
+    "domain":"www.rfa.com",
+    "url":[
+      "https://www.rfa.com/realtime/world",
+      "https://www.rfa.com/news/world",
+      "https://www.rfa.com/realtime/china",
+      "https://www.rfa.com/news/china"
+    ],
+    "addr":":10002",
+    "timeout":"1s",
+    "heartbeat":"5m"
+  }
+}
