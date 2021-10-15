@@ -22,7 +22,7 @@ func main() {
 
 	// MS
 	g.Go(func() error {
-		log.Printf("[%s] MS start at: %s", configs.Data.MS.Title, configs.Data.MS.Addr)
+		log.Printf("[%s] MS start at: %s", configs.Data.MS["rfa"].Title, configs.Data.MS["rfa"].Addr)
 		return server.Start(ctx)
 	})
 	g.Go(func() error {
@@ -32,7 +32,7 @@ func main() {
 
 	// Job
 	g.Go(func() error {
-		log.Printf("[%s] Job is working", configs.Data.MS.Title)
+		log.Printf("[%s] Job is working", configs.Data.MS["rfa"].Title)
 		return job.Crawl(ctx)
 	})
 	g.Go(func() error {

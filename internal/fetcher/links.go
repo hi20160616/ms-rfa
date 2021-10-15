@@ -17,7 +17,7 @@ func fetchLinks() ([]string, error) {
 	rt := []string{}
 
 	year := strconv.Itoa(time.Now().Year())
-	urls := append(configs.Data.MS.URL,
+	urls := append(configs.Data.MS["rfa"].URL,
 		"https://www.rfa.org/mandarin/Xinwen/story_archive?year="+year,
 		"https://www.rfa.org/mandarin/yataibaodao/story_archive?year="+year)
 
@@ -59,7 +59,7 @@ func getLinks(rawurl string) ([]string, error) {
 	}
 	if links, err := exhtml.ExtractLinks(u.String()); err != nil {
 		return nil, errors.WithMessagef(err, "[%s] cannot extract links from %s",
-			configs.Data.MS.Title, rawurl)
+			configs.Data.MS["rfa"].Title, rawurl)
 	} else {
 		return gears.StrSliceDeDupl(links), nil
 	}
